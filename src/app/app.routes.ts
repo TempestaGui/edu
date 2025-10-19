@@ -1,9 +1,18 @@
 import { Routes } from '@angular/router';
-import { Carroslist } from './components/carroslist/carroslist';
-import { Dashboard } from './components/dashboard/dashboard';
+import { Login } from './components/layout/login/login';
+import { Principal } from './components/layout/principal/principal';
+import { Carroslist } from './components/carros/carroslist/carroslist';
+import { Marcaslist } from './components/marcas/marcaslist/marcaslist';
+import { Carrosdetails } from './components/carros/carrosdetails/carrosdetails';
 
 export const routes: Routes = [
-    {path: "", redirectTo: "dashboard", pathMatch: "full"},
-    {path: "carros", component: Carroslist},
-    {path: "dashboard", component: Dashboard}
-];
+ 
+    {path: "", redirectTo: "login", pathMatch: "full"},
+    {path: "login", component: Login},
+    {path: "admin", component: Principal, children: [
+        {path: "carros", component: Carroslist},
+        {path: "carros/edita/:id", component: Carrosdetails},
+        {path: "carros/new", component: Carrosdetails}
+    ]}
+]
+ 
